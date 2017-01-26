@@ -12,3 +12,4 @@ RUN apk --no-cache add curl \
 COPY opt/qnib/entry/20-kafka.sh /opt/qnib/entry/
 COPY opt/qnib/kafka/bin/start.sh /opt/qnib/kafka/bin/
 COPY opt/qnib/kafka/conf/server.properties /opt/qnib/kafka/conf/
+CMD ["/opt/qnib/kafka/bin/start.sh"]
