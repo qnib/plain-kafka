@@ -36,7 +36,6 @@ services:
         condition: on-failure
   broker:
     image: qnib/plain-kafka:0.10.0.1
-    hostname: '{{.Service.Name}}-{{.Task.Slot}}-{{.Task.ID}}'
     ports:
       - "9092:9092"
     deploy:
