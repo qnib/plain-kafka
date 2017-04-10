@@ -1,6 +1,6 @@
 FROM qnib/alplain-openjre8
 
-ARG KAFKA_VER=0.10.0.1
+ARG KAFKA_VER=0.10.1.1
 ARG API_VER=2.11
 ENV KAFKA_PORT=9092 \
     ZK_SERVERS=zookeeper \
