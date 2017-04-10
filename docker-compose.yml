@@ -35,8 +35,7 @@ services:
       restart_policy:
         condition: on-failure
   broker:
-    image: qnib/plain-kafka:local
-    hostname: '{{.Service.Name}}-{{.Task.Slot}}-{{.Task.ID}}'
+    image: qnib/plain-kafka
     ports:
       - "9092:9092"
     deploy:
