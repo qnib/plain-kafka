@@ -51,6 +51,5 @@ services:
       restart_policy:
         condition: on-failure
     environment:
-      KAFKA_BROKER_ID: '{{.Task.Slot}}'
+      SWARM_TASK_ID: '{{.Task.Slot}}'
       ZK_SERVERS: "kafka_zookeeper"
-      ADVERTISED_LISTENERS: "localhost:9092"
