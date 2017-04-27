@@ -5,7 +5,9 @@ ARG API_VER=2.11
 ENV KAFKA_PORT=9092 \
     ZK_SERVERS=zookeeper \
     KAFKA_BROKER_ID=0 \
-    ADVERTISED_LISTENERS=kafka_broker
+    ADVERTISED_LISTENERS=kafka_broker \
+    INTER_BROKER_PROTOCOL_VERSION=0.10.0-IV1 \
+    LOG_MESSAGE_FORMAT_VERSION=0.10.0-IV1
 RUN apk --no-cache add curl \
  && curl -fLs http://apache.mirrors.pair.com/kafka/${KAFKA_VER}/kafka_${API_VER}-${KAFKA_VER}.tgz | tar xzf - -C /opt \
  && mv /opt/kafka_${API_VER}-${KAFKA_VER} /opt/kafka/ \
