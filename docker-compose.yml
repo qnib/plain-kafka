@@ -53,4 +53,3 @@ services:
     environment:
       KAFKA_BROKER_ID: '{{.Task.Slot}}'
       ZK_SERVERS: "kafka_zookeeper"
-      ADVERTISED_LISTENERS: "localhost:9092"
