@@ -7,8 +7,9 @@ ENV KAFKA_PORT=9092 \
     KAFKA_BROKER_ID=0 \
     ADVERTISED_LISTENERS=kafka_broker \
     INTER_BROKER_PROTOCOL_VERSION=0.10.0-IV1 \
-    LOG_MESSAGE_FORMAT_VERSION=0.10.0-IV1
-RUN apk --no-cache add curl \
+    LOG_MESSAGE_FORMAT_VERSION=0.10.0-IV1 \
+    KAFKA_ID_OFFSET=0
+RUN apk --no-cache add curl bc \
  && curl -fLs http://apache.mirrors.pair.com/kafka/${KAFKA_VER}/kafka_${API_VER}-${KAFKA_VER}.tgz | tar xzf - -C /opt \
  && mv /opt/kafka_${API_VER}-${KAFKA_VER} /opt/kafka/ \
  && apk --no-cache del curl
