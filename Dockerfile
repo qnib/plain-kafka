@@ -3,7 +3,8 @@ FROM qnib/alplain-openjre8
 ARG KAFKA_VER=0.10.2.0
 ARG API_VER=2.12
 ENV KAFKA_PORT=9092 \
-    ZK_SERVERS=zookeeper \
+    ZK_SERVERS=tasks.zookeeper \
+    ENTRYPOINTS_DIR=/opt/qnib/entry \
     INTER_BROKER_PROTOCOL_VERSION=0.10.2-IV0 \
     LOG_MESSAGE_FORMAT_VERSION=0.10.2-IV0 \
     KAFKA_ID_OFFSET=0
