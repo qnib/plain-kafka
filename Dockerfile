@@ -1,9 +1,10 @@
 FROM qnib/alplain-openjre8
 
 ARG KAFKA_VER=0.10.1.1
-ARG API_VER=2.11
+ARG API_VER=2.12
 ENV KAFKA_PORT=9092 \
-    ZK_SERVERS=zookeeper \
+    ENTRYPOINTS_DIR=/opt/qnib/entry \
+    ZK_SERVERS=tasks.zookeeper:2181 \
     KAFKA_BROKER_ID=0 \
     ADVERTISED_LISTENERS=kafka_broker \
     INTER_BROKER_PROTOCOL_VERSION=0.10.1-IV2 \
