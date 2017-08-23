@@ -3,7 +3,8 @@ FROM qnib/alplain-openjre8
 ARG KAFKA_VER=0.11.0.0
 ARG API_VER=2.12
 ENV KAFKA_PORT=9092 \
-    ZK_SERVERS=zookeeper \
+    ENTRYPOINTS_DIR=/opt/qnib/entry \
+    ZK_SERVERS=tasks.zookeeper \
     KAFKA_ID_OFFSET=0
 RUN apk --no-cache add curl bc \
  && curl -fLs http://apache.mirrors.pair.com/kafka/${KAFKA_VER}/kafka_${API_VER}-${KAFKA_VER}.tgz | tar xzf - -C /opt \
