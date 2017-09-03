@@ -1,4 +1,5 @@
-FROM qnib/alplain-openjre8
+ARG DOCKER_REGISTRY=docker.io
+FROM ${DOCKER_REGISTRY}/qnib/alplain-openjre8
 
 ARG KAFKA_VER=0.11.0.0
 ARG API_VER=2.12
