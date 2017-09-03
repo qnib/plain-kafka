@@ -1,15 +1,17 @@
 version: '3'
 services:
   zookeeper:
-    image: qnib/plain-zookeeper
+    image: qnib/plain-zookeeper@sha256:6dfdaae24f3d1ef77e76dff85a5ab8ac7edb2d145935f213b7ae5176377eacc1
     ports:
       - "2181:2181"
   zkui:
-    image: qnib/plain-zkui
+    image: qnib/plain-zkui@sha256:9e9a9a1994adc012ef7a471d10b21d5c27bced0dd59e8580002dc4f03e79c05b
     ports:
       - "9090:9090"
+    environment:
+      - ZK_SERVER=tasks.zookeeper:2181
   broker:
-    image: qnib/plain-kafka:0.10.2.1
+    image: qnib/plain-kafka@sha256:8f2df013336c45ef30cc89556ba2b331d7a23d86db92cdcb14c71acc2e14e91c
     ports:
       - "9092:9092"
     environment:
