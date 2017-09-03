@@ -5,14 +5,27 @@ services:
     ports:
       - "2181:2181"
   zkui:
-    image: qnib/plain-zkui@sha256:9e9a9a1994adc012ef7a471d10b21d5c27bced0dd59e8580002dc4f03e79c05b
+    image: qnib/plain-zkui:8d3441d@sha256:d66972bd886ade9a8d7383f5064bd825f6d29275a282250cb0adf52475f67726
     ports:
       - "9090:9090"
-    environment:
-      - ZK_SERVER=tasks.zookeeper:2181
   broker:
-    image: qnib/plain-kafka@sha256:8f2df013336c45ef30cc89556ba2b331d7a23d86db92cdcb14c71acc2e14e91c
+    image: qnib/plain-kafka:dirty
     ports:
       - "9092:9092"
+      - "7071:7071"
     environment:
       KAFKA_BROKER_ID: '{{.Task.Slot}}'
+  prometheus:
+    image: qnib/plain-prometheus:1.7.1
+    ports:
+      - "9091:9090"
+  grafana:
+    image: ${GRAFANA_IMG:-qnib/plain-grafana4:4.4.3}
+    ports:
+     - 3000:3000
+    environment:
+      - GRAFANA_DATA_SOURCES=prometheus
+  exporter:
+    image: ${EXPORTER_IMT:-qnib/plain-prometheus-exporter-kafka-zookeeper}
+    ports:
+      - "9381:9381"
