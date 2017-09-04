@@ -26,7 +26,3 @@ services:
      - 3000:3000
     environment:
       - GRAFANA_DATA_SOURCES=prometheus
-  exporter:
-    image: ${EXPORTER_IMT:-qnib/plain-prometheus-exporter-kafka-zookeeper}
-    ports:
-      - "9381:9381"
