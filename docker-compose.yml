@@ -1,28 +1,23 @@
 version: '3'
 services:
   zookeeper:
-    image: qnib/plain-zookeeper@sha256:6dfdaae24f3d1ef77e76dff85a5ab8ac7edb2d145935f213b7ae5176377eacc1
+    image: qnib/plain-zookeeper@sha256:593f8b807412837d52be111575a544b9fcb4db79868cab1c6819fbcc9c0568b7
     ports:
       - "2181:2181"
   zkui:
-    image: qnib/plain-zkui:8d3441d@sha256:d66972bd886ade9a8d7383f5064bd825f6d29275a282250cb0adf52475f67726
+    image: qnib/plain-zkui@sha256:d66972bd886ade9a8d7383f5064bd825f6d29275a282250cb0adf52475f67726
     ports:
       - "9090:9090"
   broker:
-    image: qnib/plain-kafka:dirty
+    image: qnib/plain-kafka@sha256:192b2acdce269b31e894c86ec7fd88a1e7e701cd5ac5d55cd20bcea6c885b332
+    hostname: "{{.Service.Name}}.{{.Task.Slot}}.{{.Task.ID}}"
     ports:
       - "9092:9092"
-      - "7071:7071"
     environment:
-      KAFKA_BROKER_ID: '{{.Task.Slot}}'
-      PROMETHEUS_ENABLE: 'true'
-  prometheus:
-    image: qnib/plain-prometheus:1.7.1
+      SWARM_TASK_ID: '{{.Task.Slot}}'
+  kafka-manager:
+    image: qnib/plain-kafka-manager@sha256:045d0d5cbbbc1937baf4cb0a269b193117b193b3cd71c88abab5a579f6b1308f
     ports:
-      - "9091:9090"
-  grafana:
-    image: ${GRAFANA_IMG:-qnib/plain-grafana4:4.4.3}
-    ports:
-     - 3000:3000
+      - "9001:9000"
     environment:
-      - GRAFANA_DATA_SOURCES=prometheus
+      ZK_SERVER: "tasks.zookeeper:2181"
