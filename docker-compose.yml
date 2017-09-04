@@ -15,6 +15,7 @@ services:
       - "7071:7071"
     environment:
       KAFKA_BROKER_ID: '{{.Task.Slot}}'
+      PROMETHEUS_ENABLE: 'true'
   prometheus:
     image: qnib/plain-prometheus:1.7.1
     ports:
