@@ -6,6 +6,7 @@ ARG API_VER=2.12
 LABEL kafka.version=${API_VER}-${KAFKA_VER}
 ENV KAFKA_PORT=9092 \
     PROMETHEUS_JMX_PROFILE=kafka \
+    PROMETHEUS_JMX_ENABLE=false \
     ENTRYPOINTS_DIR=/opt/qnib/entry \
     ZK_SERVERS=tasks.zookeeper \
     INTER_BROKER_PROTOCOL_VERSION=0.10.2-IV0 \
