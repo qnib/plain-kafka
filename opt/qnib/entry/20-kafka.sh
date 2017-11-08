@@ -1,7 +1,9 @@
 #!/bin/bash
 set -x
 
-if [[ -z ${KAFKA_BROKER_ID} ]] && [[ -n ${SWARM_TASK_ID} ]];then
+if [[ "X${KAFKA_BROKER_ID}" != "X" ]];then
+    KAFKA_BROKER_ID=${KAFKA_BROKER_ID}
+elif [[ "X${SWARM_TASK_ID}" != "X" ]];then
     KAFKA_BROKER_ID=$(echo ${SWARM_TASK_ID}-1 | bc)
 else
     KAFKA_BROKER_ID=0
