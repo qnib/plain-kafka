@@ -1,7 +1,7 @@
 ARG DOCKER_REGISTRY=docker.io
 FROM ${DOCKER_REGISTRY}/qnib/alplain-openjre8-prometheus
 
-ARG KAFKA_VER=KAFKA_VER=1.0.0
+ARG KAFKA_VER=1.0.0
 ARG API_VER=2.12
 LABEL kafka.version=${API_VER}-${KAFKA_VER}
 ENV KAFKA_PORT=9092 \
@@ -13,8 +13,8 @@ ENV KAFKA_PORT=9092 \
     LOG_MESSAGE_FORMAT_VERSION=CURRENT_KAFKA_VERSION \
     KAFKA_ID_OFFSET=0
 RUN apk --no-cache add curl bc \
- && curl -fLs http://apache.mirrors.pair.com/kafka/${KAFKA_VER}/kafka_${API_VER}-${KAFKA_VER}.tgz | tar xzf - -C /opt \
- && mv /opt/kafka_${API_VER}-${KAFKA_VER} /opt/kafka/ \
+ && mkdir -p /opt/kafka \
+ && curl -fLs http://apache.mirrors.pair.com/kafka/${KAFKA_VER}/kafka_${API_VER}-${KAFKA_VER}.tgz |tar xzf - --strip-component=1 -C /opt/kafka \
  && apk --no-cache del curl
 COPY opt/qnib/entry/*.sh /opt/qnib/entry/
 COPY opt/qnib/kafka/bin/start.sh /opt/qnib/kafka/bin/
