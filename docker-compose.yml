@@ -9,7 +9,7 @@ services:
     ports:
       - "9090:9090"
   broker:
-    image: qnib/plain-kafka:1.0.0
+    image: qnib/plain-kafka:image: qnib/plain-kafka:1.0.0
     ports:
       - "9092:9092"
     environment:
