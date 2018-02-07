@@ -10,7 +10,7 @@ ENV KAFKA_PORT=9092 \
     ENTRYPOINTS_DIR=/opt/qnib/entry \
     ZK_SERVERS=tasks.zookeeper \
     INTER_BROKER_PROTOCOL_VERSION=1.0-IV0 \
-    LOG_MESSAGE_FORMAT_VERSION=CURRENT_KAFKA_VERSION \
+    LOG_MESSAGE_FORMAT_VERSION=${KAFKA_VER} \
     KAFKA_ID_OFFSET=0
 RUN apk --no-cache add curl bc \
  && mkdir -p /opt/kafka \
